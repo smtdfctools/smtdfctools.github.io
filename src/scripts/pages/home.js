@@ -14,7 +14,7 @@ async function loadContent(source) {
 }
 
 Turtle.component("home-page", function($) {
-  $.addItem = function(info,source) {
+  $.addItem = function(info,source,link) {
     let div = document.createElement("div")
     div.innerHTML = `
       <div class="fade tool-info mt-4 p-4 shadow d-flex align-items-center justify-content-sb">
@@ -25,10 +25,10 @@ Turtle.component("home-page", function($) {
         <span class="material-symbols-outlined">arrow_right_alt</span>
       </div>
     `
-    
+    console.log(source)
     div.addEventListener("click", function() {
       showLoader()
-      window.open(`${info.link}/index.html?time=${Date.now()}&key=${generateKey("_")+generateKey()+generateKey()+generateKey()}&group=${source.key}&tool=${info.key}`)
+      window.open(`${link}/index.html?time=${Date.now()}&key=${generateKey("_")+generateKey()+generateKey()+generateKey()}&group=${source.key}&tool=${info.key}`)
     })
     
     $.refs.list.appendChild(div)
@@ -42,7 +42,7 @@ Turtle.component("home-page", function($) {
           loadContent(source)
             .then(s => {
               s.tools.forEach(item => {
-                $.addItem(item,s.info)
+                $.addItem(item,s.info,source)
               })
             })
         })
