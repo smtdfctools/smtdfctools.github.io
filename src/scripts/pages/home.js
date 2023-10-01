@@ -27,7 +27,8 @@ Turtle.component("home-page", function($) {
     `
     
     div.addEventListener("click", function() {
-      window.location =`${info.link}/index.html?time=${Date.now()}&key=${generateKey("_")+generateKey()+generateKey()+generateKey()}&group=${source.key}&tool=${info.key}`
+      showLoader()
+      window.open(`${info.link}/index.html?time=${Date.now()}&key=${generateKey("_")+generateKey()+generateKey()+generateKey()}&group=${source.key}&tool=${info.key}`)
     })
     
     $.refs.list.appendChild(div)
