@@ -18,7 +18,9 @@ class ToolResourcesLoadProccess {
       let ctx = this
       addScript(
         p,
-        new Function(),
+        function(){
+          ctx.reportErr()
+        },
         function(){
           ctx.reportDone()
         }
@@ -26,8 +28,14 @@ class ToolResourcesLoadProccess {
     })
   }
   
+  onError(){}
   onSuccess() {}
   onStatusChange(p) {}
+  reportErr(){
+    if(this.done) return
+    this.done = true
+    this.onError()
+  }
   reportDone() {
     if (this.done) return
     this.success++
@@ -36,7 +44,7 @@ class ToolResourcesLoadProccess {
       return
     }
     this.precent = (this.success / this.totalTask) * 100
-    this.onStatusChange(this.path)
+    this.onStatusChange(this.precent)
     if (this.success == this.totalTask) {
       this.onSuccess()
       this.done = true
