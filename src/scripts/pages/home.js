@@ -25,8 +25,9 @@ Turtle.component("home-page", function($) {
         <span class="material-symbols-outlined">arrow_right_alt</span>
       </div>
     `
+    
     div.addEventListener("click", function() {
-      window.location =`../../viewer/index.html?time=${Date.now()}&key=${generateKey("_")+generateKey()+generateKey()+generateKey()}&group=${source.key}&tool=${info.key}`
+      window.location =`${info.link}/index.html?time=${Date.now()}&key=${generateKey("_")+generateKey()+generateKey()+generateKey()}&group=${source.key}&tool=${info.key}`
     })
     
     $.refs.list.appendChild(div)
