@@ -18,9 +18,8 @@ function getParameterByName(name, url = window.location.href) {
 
 
 
-async function loadTool(base, key) {
-  let data = await import(`${base}/tools/${key}/init.js`)
-  let resources = data.requirements.resources
+async function loadTool(configs) {
+  let resources = configs.requirements.resources
   resources.js.forEach((p) => {
     addScript(p)
   })
