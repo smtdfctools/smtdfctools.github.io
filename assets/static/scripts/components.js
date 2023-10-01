@@ -1,6 +1,6 @@
 Turtle.component("tool-nav", function($) {
   $.onRender = function(){
-    $.refs.name = $.getAttribute("title")
+    $.refs.name.textContent = $.getAttribute("title")
   }
   
   return `
