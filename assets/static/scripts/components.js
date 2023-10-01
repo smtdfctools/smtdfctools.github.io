@@ -7,6 +7,17 @@ function addScript(path) {
   document.body.appendChild(script)
 }
 
+function getParameterByName(name, url = window.location.href) {
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+
+
 async function loadTool(base, key) {
   let data = await import(`${base}/tools/${key}/init.js`)
   let resources = data.requirements.resources
