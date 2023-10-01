@@ -23,7 +23,7 @@ async function loadTool(configs) {
   resources.js.forEach((p) => {
     addScript(p)
   })
-  addScript(`../tools/${key}/main.js`)
+  
 }
 
 Turtle.component("tool-nav", function($) {
