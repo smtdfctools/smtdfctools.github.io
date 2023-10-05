@@ -1,3 +1,5 @@
+const resource_loaded = false
+
 class ToolResourcesLoadProccess {
   constructor(name) {
     this.name = name
@@ -18,21 +20,21 @@ class ToolResourcesLoadProccess {
       let ctx = this
       addScript(
         p,
-        function(){
+        function() {
           ctx.reportErr()
         },
-        function(){
+        function() {
           ctx.reportDone()
         }
       )
     })
   }
-  
-  onError(){}
+
+  onError() {}
   onSuccess() {}
   onStatusChange(p) {}
-  reportErr(){
-    if(this.done) return
+  reportErr() {
+    if (this.done) return
     this.done = true
     this.onError()
   }
@@ -60,7 +62,7 @@ function addScript(path, onError = new Function(), onSuccess = new Function()) {
     onError()
     console.log(`Failed to load script ${path} `);
   }
-  script.onload = function(){
+  script.onload = function() {
     onSuccess()
   }
   script.src = path
