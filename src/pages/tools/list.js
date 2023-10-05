@@ -20,7 +20,7 @@ Turtle.component("group-items", function($) {
       `
       
       div.onclick = function() {
-        window.location = `${item.base_url}${item.entry_point}/index.html`
+        window.location = `${item.base_url}${item.entry_point}`
       }
 
       list.addChild(div)
