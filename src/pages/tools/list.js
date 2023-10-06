@@ -10,7 +10,7 @@ Turtle.component("group-items", function($) {
   let title = $.props.title
   $.onRender = function() {
     items.forEach((item) => {
-     // console.log(item);
+     console.log(item);
       const { list } = $.refs
       let div = document.createElement("div")
       div.className = "item fade"
