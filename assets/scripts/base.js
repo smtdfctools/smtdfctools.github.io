@@ -88,16 +88,19 @@ async function loadToolResources(configs) {
 function showShareModal(url) {
   let s = document.createElement("share-modal")
   s.props.url = url
+  s.props.id = Date.now()
+  s.id =`_m${s.props.id}`
   document.body.appendChild(s)
 }
 
 Turtle.component("share-modal", function($) {
-  let id = Date.now()
+  let id = $.props.id
 
   $.onRender = function() {
     
     $.refs.btn.on("click", function() {
-      document.querySelector("#share-modal").remove()
+      
+      document.querySelector(`#_m${id}`).remove()
     })
 
     let qrcode = new QRCode(`_${id}`, {
