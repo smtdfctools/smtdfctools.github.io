@@ -85,7 +85,7 @@ async function loadToolResources(configs) {
   return process
 }
 
-function showShareModal(url){
+function showShareModal(url) {
   let s = document.createElement("share-modal")
   s.props.url = url
   document.body.appendChild(s)
@@ -95,6 +95,11 @@ Turtle.component("share-modal", function($) {
   let id = Date.now()
 
   $.onRender = function() {
+    
+    $.refs.btn.on("click", function() {
+      document.querySelector("#share-modal").remove()
+    })
+
     let qrcode = new QRCode(`_${id}`, {
       text: $.props.url,
       width: 200,
@@ -103,11 +108,8 @@ Turtle.component("share-modal", function($) {
       colorLight: "#ffffff",
       correctLevel: QRCode.CorrectLevel.H
     });
+    
   }
-  
-  $.refs.btn.on("click",function(){
-    document.querySelector("#share-modal").remove()
-  })
   
   return `
       <div class="modal active" id="share-modal">
