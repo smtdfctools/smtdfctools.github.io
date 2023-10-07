@@ -15,7 +15,7 @@ Turtle.component("group-items", function($) {
       let div = document.createElement("div")
       div.className = "item fade"
       div.innerHTML = `
-        <img class="icon" src="${item.base_url}/assets/icon.png" alt="tool_icon">
+        <img class="icon" src="${item.base_url}${item.icon_path}" alt="tool_icon">
         <span>${item.name}</span>
       `
       
