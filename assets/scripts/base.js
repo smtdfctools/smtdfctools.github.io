@@ -85,6 +85,52 @@ async function loadToolResources(configs) {
   return process
 }
 
+function showShareModal(url){
+  let s = document.createElement("share-modal")
+  s.props.url = url
+  document.body.appendChild(s)
+}
+
+Turtle.component("share-modal", function($) {
+  let id = Date.now()
+
+  $.onRender = function() {
+    let qrcode = new QRCode(`_${id}`, {
+      text: $.props.url,
+      width: 200,
+      height: 200,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  }
+  
+  $.refs.btn.on("click",function(){
+    document.querySelector("#share-modal").remove()
+  })
+  
+  return `
+      <div class="modal active" id="share-modal">
+        <div class="modal-contents">
+          <div class="modal-header">
+            <h3 class="my-2 modal-title-text">Share</h3>
+            <button class="modal-toggle-btn" ${Turtle.ref("btn")}>X</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="" class="form-label">URL:</label>
+              <input type="text" class="form-input" value="${$.props.url}" readonly>
+            </div>
+            <div class="text-align-center">
+              <h1 style="font-size: 20px; font-style: normal;">Or</h1>
+            </div>
+            <div class="d-flex justify-content-center" id="_${id}"></div>
+          </div>
+        </div>
+      </div>
+  `
+})
+
 Turtle.component("tool-nav", function($) {
   $.onRender = function() {
     $.refs.name.textContent = $.getAttribute("title")
